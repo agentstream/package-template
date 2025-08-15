@@ -24,7 +24,7 @@ class TestGetCurrentTime:
         """Test get_current_time with default time format"""
         # Arrange
         context = MockFSContext()
-        data = {"test": "data"}
+        data = {"name": "John"}
 
         # Act
         with patch("main.datetime.datetime") as mock_datetime:
@@ -34,13 +34,13 @@ class TestGetCurrentTime:
             result = get_current_time(context, data)
 
         # Assert
-        assert result == {"result": "The current time is 2025-08-30 12:30:45."}
+        assert result == {"result": "Hi, John, the current time is 2025-08-30 12:30:45."}
 
     def test_get_current_time_custom_format(self):
         """Test get_current_time with custom time format"""
         # Arrange
         context = MockFSContext("%H:%M")
-        data = {"test": "data"}
+        data = {"name": "Alice"}
 
         # Act
         with patch("main.datetime.datetime") as mock_datetime:
@@ -50,4 +50,4 @@ class TestGetCurrentTime:
             result = get_current_time(context, data)
 
         # Assert
-        assert result == {"result": "The current time is 12:30."}
+        assert result == {"result": "Hi, Alice, the current time is 12:30."}
